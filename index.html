@@ -4,9 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilos/styles.css">
-    <title>Document</title>
+    <title>Operaciones CRUD</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Operaciones CRUD</h1>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Añadir Estudiante</h2>
+            <form onsubmit="addStudent(event)">
+                <label for="student_id">Cedula:</label>
+                <input type="text" id="student_id" required>
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="name" required>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="lastName" required>
+
+                <label for="edad">Edad:</label>
+                <input type="number" id="age" required>
+
+                <label for="correo">Correo electronico:</label>
+                <input type="email" id="email" required>
+
+                <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="birthDate" required>
+
+                <label for="genero">Genero:</label>
+                <input type="text" id="gender" required>
+
+                <label for="materiasQueToma">Materias que toma:</label>
+                <input type="text" id="subjects" required>
+
+                <label for="trabajo">Trabajo:</label>
+                <input type="text" id="job" required>
+
+                <button type="submit">Añadir</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Lista de Estudiantes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cedula</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="students_table_body">
+                    <!-- Las filas de la tabla se agregarán dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Simply lovely</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Operaciones CRUD</title>
+</head>
+<body>
+    <header>
+        <h1>Operaciones CRUD</h1>
+    </header>
+
+    <div class="container">
+        <aside>
+            <h3>Buscar Estudiante</h3>
+            <!-- Buscar por cedula -->
+        </aside>
+        
+        <div class="main-container">
+            <button id="btnAgregar">Agregar Nuevo Estudiente</button>
+
+            <section>
+                <h2>Lista de Estudiantes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cedula</th>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Correo</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="students_table_body">
+                        <!-- Las filas de la tabla se agregarán dinámicamente -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Simply lovely</p>
+    </footer>
+
+    <div class="modal" id="agregarEstudiante">
+        <div class="modal-formulario">
+            <h2>Añadir Estudiante</h2>
+            <button id="btnCerrarModal" class="cerrar-modal">&times;</button>
+            <form onsubmit="addStudent(event)">
+                <div class="form-group">
+                    <label for="student_id">Cedula:</label>
+                    <input type="text" id="student_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Apellido:</label>
+                    <input type="text" id="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Edad:</label>
+                    <input type="number" id="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="birthDate">Fecha de nacimiento:</label>
+                    <input type="date" id="birthDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Género:</label>
+                    <input type="text" id="gender" required>
+                </div>
+                <div class="form-group">
+                    <label for="subjects">Materias que toma:</label>
+                    <input type="text" id="subjects" required>
+                </div>
+                <div class="form-group">
+                    <label for="job">Trabajo:</label>
+                    <input type="text" id="job" required>
+                </div>
+                <button type="submit">Añadir</button>
+            </form>
+        </div>
+    </div>    
+    
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

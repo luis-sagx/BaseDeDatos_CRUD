@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="../static/css/styles.css">
     <title>Operaciones CRUD</title>
 </head>
 <body>
@@ -14,11 +14,19 @@
     <div class="container">
         <aside>
             <h3>Buscar Estudiante</h3>
-            <!-- Buscar por cedula -->
+            <form id="searchForm">
+                <div class="form-group">
+                    <label for="searchStudentId">Cedula:</label>
+                    <input type="text" id="searchStudentId" placeholder="Ingrese la cédula" required>
+                </div>
+                <button type="submit">Buscar</button>
+            </form>
+            <div id="searchResult"></div>
         </aside>
         
+        
         <div class="main-container">
-            <button id="btnAgregar">Agregar Nuevo Estudiente</button>
+            <button id="btnAgregar">Agregar Nuevo Estudiante</button>
 
             <section>
                 <h2>Lista de Estudiantes</h2>
@@ -48,7 +56,7 @@
         <div class="modal-formulario">
             <h2>Añadir Estudiante</h2>
             <button id="btnCerrarModal" class="cerrar-modal">&times;</button>
-            <form onsubmit="addStudent(event)">
+            <form id="addStudentForm">
                 <div class="form-group">
                     <label for="student_id">Cedula:</label>
                     <input type="text" id="student_id" required>
@@ -90,8 +98,7 @@
         </div>
     </div>    
     
-
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="../static/js/script.js"></script>
 
 </body>
 </html>

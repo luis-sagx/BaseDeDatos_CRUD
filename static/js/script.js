@@ -2,18 +2,40 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchStudents();  // Cargar estudiantes al inicio
     document.getElementById('searchForm').addEventListener('submit', searchStudent);
     document.getElementById('addStudentForm').addEventListener('submit', addStudent);
-    document.getElementById('btnAgregar').addEventListener('click', openModal);  // Mostrar el modal
-    document.getElementById('btnCerrarModal').addEventListener('click', closeModal);  // Cerrar el modal
+    document.getElementById('btnAgregar').addEventListener('click', openAddModal);  // Mostrar el modal para añadir
+    document.getElementById('btnCerrarModal').addEventListener('click', closeAddModal);  // Cerrar el modal para añadir
+    document.getElementById('btnCerrarEditarModal').addEventListener('click', closeEditModal); // Cerrar el modal para editar
+    document.getElementById('editStudentForm').addEventListener('submit', updateStudent); // Actualizar estudiante
 });
 
-// Función para abrir el modal
-function openModal() {
+// Función para abrir el modal de añadir
+function openAddModal() {
     document.getElementById('agregarEstudiante').style.display = 'block';
 }
 
-// Función para cerrar el modal
-function closeModal() {
+// Función para cerrar el modal de añadir
+function closeAddModal() {
     document.getElementById('agregarEstudiante').style.display = 'none';
+}
+
+// Función para abrir el modal de edición
+function openEditModal(student) {
+    document.getElementById('edit_student_id').value = student.student_id;
+    document.getElementById('edit_name').value = student.nombre;
+    document.getElementById('edit_lastName').value = student.apellido;
+    document.getElementById('edit_age').value = student.edad;
+    document.getElementById('edit_email').value = student.correo;
+    document.getElementById('edit_birthDate').value = student.fecha_nacimiento;
+    document.getElementById('edit_gender').value = student.genero;
+    document.getElementById('edit_subjects').value = student.materias;
+    document.getElementById('edit_job').value = student.trabajo;
+
+    document.getElementById('editarEstudiante').style.display = 'block';
+}
+
+// Función para cerrar el modal de edición
+function closeEditModal() {
+    document.getElementById('editarEstudiante').style.display = 'none';
 }
 
 // Función para obtener estudiantes desde la API
@@ -56,7 +78,34 @@ async function addStudent(event) {
     const result = await response.json();
     alert(result.message);
     fetchStudents(); // Vuelve a cargar los estudiantes
-    closeModal();  // Cierra el modal después de agregar el estudiante
+    closeAddModal();  // Cierra el modal después de agregar el estudiante
+}
+
+// Función para actualizar un estudiante
+async function updateStudent(event) {
+    event.preventDefault();
+    const studentId = document.getElementById('edit_student_id').value;
+    const student = {
+        nombre: document.getElementById('edit_name').value,
+        apellido: document.getElementById('edit_lastName').value,
+        edad: document.getElementById('edit_age').value,
+        correo: document.getElementById('edit_email').value,
+        fecha_nacimiento: document.getElementById('edit_birthDate').value,
+        genero: document.getElementById('edit_gender').value,
+        materias: document.getElementById('edit_subjects').value,
+        trabajo: document.getElementById('edit_job').value
+    };
+    const response = await fetch(`/students/${studentId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(student)
+    });
+    const result = await response.json();
+    alert(result.message);
+    fetchStudents(); // Vuelve a cargar los estudiantes
+    closeEditModal(); // Cierra el modal después de editar el estudiante
 }
 
 // Función para renderizar la lista de estudiantes en la tabla
@@ -71,10 +120,18 @@ function renderStudents(students) {
             <td>${student.nombre} ${student.apellido}</td>
             <td>${student.edad}</td>
             <td>${student.correo}</td>
-            <td><button onclick="deleteStudent('${student.student_id}')">Eliminar</button></td>
+            <td>
+                <button onclick="deleteStudent('${student.student_id}')">Eliminar</button>
+                <button onclick='editStudent(${JSON.stringify(student)})'>Editar</button>
+            </td>
         `;
         tableBody.appendChild(row);
     });
+}
+
+// Función para editar un estudiante
+function editStudent(student) {
+    openEditModal(student);
 }
 
 // Función para mostrar el resultado de la búsqueda
@@ -105,4 +162,3 @@ async function deleteStudent(studentId) {
     alert(result.message);
     fetchStudents(); // Vuelve a cargar los estudiantes
 }
-

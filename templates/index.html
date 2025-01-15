@@ -96,8 +96,54 @@
                 <button type="submit">Añadir</button>
             </form>
         </div>
-    </div>    
-    
+    </div>  
+
+    <div class="modal" id="editarEstudiante">
+        <div class="modal-formulario">
+            <h2>Editar Estudiante</h2>
+            <button id="btnCerrarEditarModal" class="cerrar-modal">&times;</button>
+            <form id="editStudentForm">
+                <div class="form-group">
+                    <label for="edit_student_id">Cedula:</label>
+                    <input type="text" id="edit_student_id" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="edit_name">Nombre:</label>
+                    <input type="text" id="edit_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_lastName">Apellido:</label>
+                    <input type="text" id="edit_lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_age">Edad:</label>
+                    <input type="number" id="edit_age" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_email">Correo electrónico:</label>
+                    <input type="email" id="edit_email" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_birthDate">Fecha de nacimiento:</label>
+                    <input type="date" id="edit_birthDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_gender">Género:</label>
+                    <input type="text" id="edit_gender" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_subjects">Materias que toma:</label>
+                    <input type="text" id="edit_subjects" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_job">Trabajo:</label>
+                    <input type="text" id="edit_job" required>
+                </div>
+                <button type="submit">Actualizar</button>
+            </form>
+        </div>
+    </div> 
+
     <script src="../static/js/script.js"></script>
 
 </body>
